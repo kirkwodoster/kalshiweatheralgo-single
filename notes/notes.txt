@@ -1,0 +1,36 @@
+ This environment is externally managed
+╰─> To install Python packages system-wide, try apt install
+    python3-xyz, where xyz is the package you are trying to
+    install.
+    
+    If you wish to install a non-Debian-packaged Python package,
+    create a virtual environment using python3 -m venv path/to/venv.
+    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+    sure you have python3-full installed.
+    
+    If you wish to install a non-Debian packaged Python application,
+    it may be easiest to use pipx install xyz, which will manage a
+    virtual environment for you. Make sure you have pipx installed.
+    
+    See /usr/share/doc/python3.12/README.venv for more information.
+
+
+sudo apt install python3.12
+sudo apt install python3-venv  # Ensure venv is installed
+python3 -m venv myenv
+source myenv/bin/activate
+
+https://www.digitalocean.com/community/questions/how-to-configure-selenium-webdriver-to-scrape-data-on-server
+
+
+
+#To find if python program is running: ps aux | grep python
+screen -ls
+To detach: screen -d 24251w
+Title: screen -r mysession
+new session: screen -S mysession
+
+
+The API output will give you the snapshot of the current orderbook for the market associated with the ticker. So in your case, "KXHIGHDEN-25JAN06-T38" is the market "37 or below" on Kalshi. The convention followed by the API is that the orderbook is quoted in terms of a list of [price, quantity] bids. In your case, "yes":[[1,8738],[2,417]..] means there are 8738 bids for a "yes" contract at a price of 1 cent, 417 bids for a "yes" contract at a price of 2 cents, etc. This differs from how the frontent of the website displays things by default, where it typically shows the quotes in ask format. So the 8738 bids for "yes" at a price of 1 cent are equivalent (and usually displayed by the frontend as) 8738 asks for a "no" contract at a price of 99 cents.
+
+
