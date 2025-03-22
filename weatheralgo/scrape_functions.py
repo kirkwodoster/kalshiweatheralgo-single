@@ -20,7 +20,7 @@ def scrape_temperature(driver, url, timezone) -> list[str, float]:
     
     try:
         driver.get(url)
-        WebDriverWait(driver, 3).until(
+        WebDriverWait(driver, 1).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'path[fill="#2caffe"]'))
         )
         path_elements = driver.find_elements(By.CSS_SELECTOR, 'path[fill="#2caffe"]')
@@ -61,7 +61,7 @@ def xml_scrape(xml_url, timezone):
 
         denver_today = datetime.now(timezone).day
 
-        next_day_high = forecasted[forecasted['DateTime'].dt.day == denver_today]['Temperature'][::-1].idxmax()
+        next_day_high = forecasted[forecasted['DateTime'].dt.day == denver_today]['Temperature'].idxmax() #[::-1]
         date = forecasted['DateTime'].iloc[next_day_high]
         hour_of_high = forecasted['DateTime'].iloc[next_day_high].hour
         temp_high = forecasted['Temperature'].iloc[next_day_high]
@@ -124,8 +124,10 @@ def permission_to_scrape(market, timezone, scraping_hours, forecasted_high_date,
     trade_today_check = trade_today(market, timezone)
     begin_scrape_check = begin_scrape(scraping_hours, forecasted_high_date, timezone)
     market_dict_check = market_dict[market]['trade_executed'] == None
+
     
     if all([not trade_today_check, begin_scrape_check, market_dict_check]): #timezone_lower_bound, timezone_upper_bound,
+        print('True')
     
         return True
     else:

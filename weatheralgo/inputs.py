@@ -4,11 +4,14 @@ from datetime import datetime
 from weatheralgo import scrape_functions
 import logging
 
-lr_length = 5
-hour = 7
-scraping_hours = [45,30]
+lr_length = 7
+hour = 2
+scraping_hours = [20,30]
 yes_price = 85
-count = 1
+count = 0
+
+ticker = "KXHIGHDEN"
+location = 'DENVER'
 
 
 all_markets = {
@@ -50,8 +53,6 @@ all_markets = {
             }
         }
 
-
-    
 market_dict = {
         "KXHIGHDEN": {
             'current_timezone':None,
@@ -85,8 +86,7 @@ market_dict = {
             },
                 }
 
-
-locations = all_markets.keys()
+# locations = all_markets.keys()
 market_inputs = list(all_markets['DENVER'].keys())
 
 scrape_inputs = {
@@ -94,7 +94,7 @@ scrape_inputs = {
     'count': count,
     'scraping_hours': scraping_hours,
     'yes_price': yes_price,
-    'locations': locations      
+    'location': location     
                 }
 
 

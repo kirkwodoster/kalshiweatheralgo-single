@@ -47,7 +47,7 @@ def initialize_driver():
 
 
 # Main function to scrape and process data
-def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, locations):
+def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, location):
     
     util_functions.logging_settings()
    
@@ -63,15 +63,16 @@ def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, lo
 
         # model_inputs = inputs.model_input
         market_dict = util_functions.retrieve_market_dict()
-        print(market_dict)
+       
         
-        location = 'DENVER'
-        hour = inputs.hour
+        location = inputs.location
         market = inputs.all_markets[location]['SERIES']
         zone = inputs.all_markets[location]['TIMEZONE']
         timezone = pytz.timezone(zone)
-        url = f"https://www.weather.gov/wrh/timeseries?site=KMDW&hours={hour}"
-        xml_url =  "https://forecast.weather.gov/MapClick.php?lat=39.8589&lon=-104.6733&FcstType=digitalDWML"
+        url = inputs.all_markets[location]['URL']
+        xml_url = inputs.all_markets[location]['XML_URL']
+        
+        print(market_dict[inputs.ticker])
 
         forecasted_high = inputs.forecasted_high_gate(
                                                         market_dict=market_dict,
@@ -92,7 +93,7 @@ def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, lo
 
         print(f'forecasted_high_date {forecasted_high_date}')
 
-        time.sleep(rand)
+        time.sleep(1)
         try:
             scrape_and_trade = scrape_functions.scrape_trade(
                                                                 market=market, 
@@ -122,4 +123,4 @@ def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, lo
             loop_counter = 0  # Reset counter
 
         
-        time.sleep(rand)
+     

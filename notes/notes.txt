@@ -22,7 +22,12 @@ source myenv/bin/activate
 
 https://www.digitalocean.com/community/questions/how-to-configure-selenium-webdriver-to-scrape-data-on-server
 
+sudo apt update
+sudo apt install python3-pip
+pip3 install selenium webdriver-manager
 
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
 
 #To find if python program is running: ps aux | grep python
 screen -ls
