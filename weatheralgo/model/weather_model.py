@@ -111,16 +111,19 @@ def scrape_dynamic_table(driver, lr_length, count, scraping_hours, yes_price, lo
                 market_dict[market]['trade_executed'] = scrape_and_trade
                 
             util_functions.market_dict_update(market_dict=market_dict)
-
+        
+            loop_counter += 1
+            print(loop_counter)
+            if loop_counter >= restart_threshold:
+                logging.info("Restarting WebDriver to prevent stale sessions...")
+                driver.quit()
+                driver = initialize_driver()
+                loop_counter = 0  # Reset counter
+            
         except Exception as e:
             logging.error(f"in main loop: {e}")
 
-        loop_counter += 1
-        if loop_counter >= restart_threshold:
-            logging.info("Restarting WebDriver to prevent stale sessions...")
-            driver.quit()
-            driver = initialize_driver()
-            loop_counter = 0  # Reset counter
+
 
         
      

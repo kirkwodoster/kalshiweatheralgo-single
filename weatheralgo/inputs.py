@@ -6,8 +6,8 @@ import logging
 
 lr_length = 7
 hour = 2
-scraping_hours = [20,30]
-yes_price = 85
+scraping_hours = [500,30]
+yes_price = 0
 count = 0
 
 ticker = "KXHIGHDEN"
